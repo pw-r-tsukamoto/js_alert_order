@@ -1,0 +1,2 @@
+# js_alert_order
+jsのalert実行順序について研究したもの
