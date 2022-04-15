@@ -8,14 +8,35 @@
 - alertよりも上に書いたコードが、alertより後に実行されてしまう！
   - confilm, promptなどのダイアログ系の関数も同様とする。
   
+```javascript
+
+$('.ret').append('<p>tier1</p>');
+alert('tier2');
+$('.ret').append('<p>tier3</p>');
+
+// これだと、tier2 -> tier1 -> tier3 になってしまう！
+```
+
 ## 解決策
 
-- resolves.htmlを参照すること。
-
-- alertを人力で実装してしまう。(bootstrapにあるとかないとか)
+- alertを使わず、似た機能を人力で実装する。(bootstrapにあるとかないとか)
 - alertを非同期処理の内側に書く
   - setTimeoutやonclick, thenのメソッドチェーンなど
 
+- 例：jQueryを利用した書き方
+```javascript
+
+  $('.ret').append('<p>tier1</p>');
+  var dfdd = $.Deferred();
+  dfdd.resolve()
+  .then(function(){
+    alert('tier2');
+  })
+  .then(function(){
+    $('.ret').append('<p>tier3</p>');
+  });
+
+```
 
 ## 分析パート
 
