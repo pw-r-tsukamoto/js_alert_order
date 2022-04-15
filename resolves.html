@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>m</title>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <p>きんいろモザイク</p>
+    <div class="ret"></div>
+    <script>
+      
+      /* jQueryを利用した書き方 1 */
+      // alertよりも先に処理がある場合
+      /*
+      $('.ret').append('<p>tier1</p>');
+      var dfd = $.Deferred();
+      dfd.resolve()
+      .then(function(){
+        alert('tier2');
+      });
+      */
+      
+      /* jQueryを利用した書き方 2 */
+      // alertよりも後に処理がある場合
+      /*
+      alert('tier2');
+      $('.ret').append('<p>tier3</p>');
+      */
+
+      /* jQueryを利用した書き方 3 */
+      // alert前後に処理がある場合
+      /*
+      $('.ret').append('<p>tier1</p>');
+      
+      var dfdd = $.Deferred();
+      dfdd.resolve()
+      .then(function(){
+        alert('tier2');
+      })
+      .then(function(){
+        $('.ret').append('<p>tier3</p>');
+      });
+      */
+
+      // 他言語チックに書く?
+      /*
+      $('.ret').append('<p>tier1</p>');
+      alert('tier2');
+      $('.ret').append('<p>tier3</p>');
+      */
+      
+
+      var classes = document.querySelector('.ret').className;
+      for(var i = 0; i < 5; i++){
+        $('.ret').append('<p>tier' + i + '</p>');
+      }
+      
+      console.log('tier ZZZ');
+      alert('tier2');
+      console.log('tier FFF');
+      $('.ret').append('<p>tier1</p>');
+      alert(document.readyState); // -> 初回 'loading'
+      document.addEventListener('readystatechange', function () {   
+        alert(document.readyState); // -> 2回目 'interactive'、 3回目 'complate'
+      });
+          
+      
+      
+      /*
+      分析パート
+      
+      前提
+      まず、Jsはコードが書かれた順番とは無関係に、プログラムを以下の順番で実行する。
+      1. 「例外的な操作やI/Oブロッキングのある操作」をすべて一つのイベントキューに置く（まだ実行しない）
+      2. 「同期CPUコード」をすべて実行
+      3. イベントキューに置かれたコードを実行する
+      
+      解決
+      上から順番に、以下のような動作になる。
+      
+      - 「例外的な操作やI/Oブロッキングのある操作」に、DOM操作が含まれる。
+      - alertは同期CPUコードである。
+      - alertを閉じたら、ページのレンダリング（≒DOMの作成）が行われる。
+      - ページのレンダリングができ次第、DOM操作が行われる
+  
+      となると、回避方法は2つ。
+      
+      1. alertを人力で実装してしまう。(bootstrapにあるとかないとか)
+      2. alertを非同期処理に組み込む
+        - setTimeoutやonclick, thenのメソッドチェーンなど。
+      
+      https://jpdebug.com/p/184087
+      
+      
+      
+      */
+
+
+    </script>
+  </body>
+</html>
