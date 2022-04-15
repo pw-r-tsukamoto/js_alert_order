@@ -46,7 +46,7 @@ $('.ret').append('<p>tier3</p>');
     $('.ret').append('<p>tier03</p>');
   });
   
-// これでもOK（alert実行中はJsの実行が止まるので）
+// これでもOK。tier1 -> tier2 -> tier3 になる。
 
 ```
 
