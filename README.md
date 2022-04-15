@@ -10,6 +10,8 @@
   
 ## 解決策
 
+- resolves.htmlを参照すること。
+
 - alertを人力で実装してしまう。(bootstrapにあるとかないとか)
 - alertを非同期処理の内側に書く
   - setTimeoutやonclick, thenのメソッドチェーンなど
