@@ -37,6 +37,17 @@ $('.ret').append('<p>tier3</p>');
   });
 
 // これなら、tier1 -> tier2 -> tier3 になる。
+
+  $('.ret').append('<p>tier1</p>');
+  var dfdd = $.Deferred();
+  dfdd.resolve()
+  .then(function(){
+    alert('tier2');
+    $('.ret').append('<p>tier3</p>');
+  });
+  
+// これでもOK（alert実行中はJsの実行が止まるので）
+
 ```
 
 ## 分析パート
@@ -62,6 +73,7 @@ $('.ret').append('<p>tier3</p>');
 
   - 3.では、DOMからの情報取得はできる。DOMへの変更が不可
   - DOM操作を組み込んだループの場合、ループがまるごと後回しにされる
+  - **alertをはじめとするダイアログを開くと、閉じられるまでの間、それ以外のJsの処理は止まる**（時間カウント系もストップする）
       
 ## 参考資料
 
