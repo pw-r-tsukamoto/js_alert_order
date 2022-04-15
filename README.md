@@ -36,6 +36,7 @@ $('.ret').append('<p>tier3</p>');
     $('.ret').append('<p>tier3</p>');
   });
 
+// これなら、tier1 -> tier2 -> tier3 になる。
 ```
 
 ## 分析パート
