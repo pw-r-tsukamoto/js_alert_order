@@ -38,12 +38,12 @@ $('.ret').append('<p>tier3</p>');
 
 // これなら、tier1 -> tier2 -> tier3 になる。
 
-  $('.ret').append('<p>tier01</p>');
+  $('.ret').append('<p>tier1</p>');
   var dfdd_2 = $.Deferred();
   dfdd_2.resolve()
   .then(function(){
-    alert('tier02');
-    $('.ret').append('<p>tier03</p>');
+    alert('tier2');
+    $('.ret').append('<p>tier3</p>');
   });
   
 // これでもOK。tier1 -> tier2 -> tier3 になる。
