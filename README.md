@@ -7,8 +7,15 @@
 
 - alertよりも上に書いたコードが、alertより後に実行されてしまう！
   - confilm, promptなどのダイアログ系の関数も同様とする。
+  
+## 解決策
 
-## 分析
+- alertを人力で実装してしまう。(bootstrapにあるとかないとか)
+- alertを非同期処理の内側に書く
+  - setTimeoutやonclick, thenのメソッドチェーンなど
+
+
+## 分析パート
 
 ### 前提
 
@@ -31,28 +38,6 @@
 
   - 3.では、DOMからの情報取得はできる。DOMへの変更が不可
   - DOM操作を組み込んだループの場合、ループがまるごと後回しにされる
- 
-  
-  
-      console.log('tier ZZZ');
-      alert('tier2');
-      console.log('tier FFF');
-      $('.ret').append('<p>tier1</p>');
-      alert(document.readyState); // -> 初回 'loading'
-      document.addEventListener('readystatechange', function () {   
-        alert(document.readyState); // -> 2回目 'interactive'、 3回目 'complate'
-      });
-  
-  
-  tier ZZZ　-> tier2 -> tier FFF -> loading -> きんいろモザイク -> tier1 -> interactive -> complate
-  
- 
-### 解決策
-
-- alertを人力で実装してしまう。(bootstrapにあるとかないとか)
-- alertを非同期処理の内側に書く
-  - setTimeoutやonclick, thenのメソッドチェーンなど
-      
       
 ## 参考資料
 

@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>m</title>
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="ret"></div>
+    <p>あえいうお</p>
+    <p>ここだと、tier_2 -> tier_3 -> tier_4 -> loading -> あえいうお -> tier_1 -> interactive -> complate</p>
+    <script>
+      
+      $('.ret').append('<p>tier_1</p>');
+      console.log('tier_2');
+      alert('tier_3');
+      console.log('tier_4');
+      alert(document.readyState); // -> 初回 'loading'
+      document.addEventListener('readystatechange', function () {   
+        alert(document.readyState); // -> 2回目 'interactive'、 3回目 'complate'
+      });
+    </script>
+  </body>
+</html>
