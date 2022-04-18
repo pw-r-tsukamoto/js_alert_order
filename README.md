@@ -21,7 +21,6 @@ $('.ret').append('<p>tier3</p>');
 
 1. alertを使わず、似た機能を人力で実装する。(bootstrapにあるとかないとか)
 2. alertを非同期処理の内側に書く
-  - setTimeoutやonclick, thenのメソッドチェーンなど
   - 例：jQueryを利用した書き方
   ```javascript
 
