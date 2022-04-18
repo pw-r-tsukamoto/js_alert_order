@@ -19,36 +19,35 @@ $('.ret').append('<p>tier3</p>');
 
 ## 解決策
 
-- alertを使わず、似た機能を人力で実装する。(bootstrapにあるとかないとか)
-- alertを非同期処理の内側に書く
+1. alertを使わず、似た機能を人力で実装する。(bootstrapにあるとかないとか)
+2. alertを非同期処理の内側に書く
   - setTimeoutやonclick, thenのメソッドチェーンなど
+  - 例：jQueryを利用した書き方
+  ```javascript
 
-- 例：jQueryを利用した書き方
-```javascript
+    $('.ret').append('<p>tier1</p>');
+    var dfdd = $.Deferred();
+    dfdd.resolve()
+    .then(function(){
+      alert('tier2');
+    })
+    .then(function(){
+      $('.ret').append('<p>tier3</p>');
+    });
 
-  $('.ret').append('<p>tier1</p>');
-  var dfdd = $.Deferred();
-  dfdd.resolve()
-  .then(function(){
-    alert('tier2');
-  })
-  .then(function(){
-    $('.ret').append('<p>tier3</p>');
-  });
+  // これなら、tier1 -> tier2 -> tier3 になる。
 
-// これなら、tier1 -> tier2 -> tier3 になる。
+    $('.ret').append('<p>tier1</p>');
+    var dfdd_2 = $.Deferred();
+    dfdd_2.resolve()
+    .then(function(){
+      alert('tier2');
+      $('.ret').append('<p>tier3</p>');
+    });
 
-  $('.ret').append('<p>tier1</p>');
-  var dfdd_2 = $.Deferred();
-  dfdd_2.resolve()
-  .then(function(){
-    alert('tier2');
-    $('.ret').append('<p>tier3</p>');
-  });
-  
-// これでもOK。tier1 -> tier2 -> tier3 になる。
+  // これでもOK。tier1 -> tier2 -> tier3 になる。
 
-```
+  ```
 
 ## 分析パート
 
